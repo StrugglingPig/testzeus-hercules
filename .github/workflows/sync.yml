@@ -14,18 +14,18 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
       - name: Add upstream remote
         run: |
           git remote add upstream https://github.com/test-zeus-ai/testzeus-hercules.git
           git fetch upstream
       - name: Merge and push
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           fork_branch=$(git rev-parse --abbrev-ref HEAD)
           git fetch origin ${fork_branch}
           git merge upstream/${fork_branch}
-          git push https://x-access-token:$GITHUB_TOKEN@github.com/StrugglingPig/testzeus-hercules.git HEAD:${fork_branch} --force
+          git push https://x-access-token:$GH_TOKEN@github.com/StrugglingPig/testzeus-hercules.git HEAD:${fork_branch} --force
