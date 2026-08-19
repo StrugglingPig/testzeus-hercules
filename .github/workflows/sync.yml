@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: write
+  workflows: write
 
 jobs:
   sync:
@@ -29,4 +30,3 @@ jobs:
           git fetch origin ${fork_branch}
           git merge upstream/${fork_branch}
           git push https://x-access-token:$GITHUB_TOKEN@github.com/StrugglingPig/testzeus-hercules.git HEAD:${fork_branch} --force
-
