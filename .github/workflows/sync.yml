@@ -25,7 +25,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git fetch origin master
-          git merge upstream/master
-          git push https://x-access-token:$GITHUB_TOKEN@github.com/StrugglingPig/testzeus-hercules.git HEAD:master --force
+          fork_branch=$(git rev-parse --abbrev-ref HEAD)
+          git fetch origin ${fork_branch}
+          git merge upstream/${fork_branch}
+          git push https://x-access-token:$GITHUB_TOKEN@github.com/StrugglingPig/testzeus-hercules.git HEAD:${fork_branch} --force
 
