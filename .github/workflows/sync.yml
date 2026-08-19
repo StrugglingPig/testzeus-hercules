@@ -25,6 +25,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin master
           git merge upstream/master
           git push https://x-access-token:$GITHUB_TOKEN@github.com/StrugglingPig/testzeus-hercules.git HEAD:master --force-with-lease
 
